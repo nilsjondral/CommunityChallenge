@@ -10,7 +10,7 @@ export class TranslationsLoaded implements Action {
   constructor(public payload: Translations) {}
 }
 
-export type TranslationsAction = TranslationsLoaded;
+export type TranslationsAction = TranslationsLoaded; // | ...
 
 export const translationsActions = {
   TranslationsLoaded

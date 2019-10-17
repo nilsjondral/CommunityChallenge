@@ -29,9 +29,9 @@ export class TranslationsSandboxService {
   loadTranslations(language: string): Observable<Translations> {
     const get = this.service.getTranslations(language);
 
-    const saveToState = get.pipe(map((t: Translations) => {
-      this.store.dispatch(new TranslationsLoaded(t));
-    }));
+    const saveToState = get.pipe(map((t: Translations) =>
+      this.store.dispatch(new TranslationsLoaded(t))
+    ));
 
     return saveToState.pipe(switchMap(() => this.selectTranslations()));
   }

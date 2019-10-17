@@ -1,6 +1,5 @@
 import { createFeatureSelector, createSelector } from '@ngrx/store';
 import { TranslationsState, TRANSLATIONS_FEATURE_KEY } from './translations.reducer';
-import { TranslationsService } from '../services/translations.service';
 
 const getTranslationsState = createFeatureSelector<TranslationsState>(TRANSLATIONS_FEATURE_KEY);
 

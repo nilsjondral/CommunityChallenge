@@ -26,6 +26,7 @@ export function translationsReducer(
       state = {...state};
       state.loaded = true;
       state.translations = new Translations(action.payload);
+      break;
     }
   }
   return state;
