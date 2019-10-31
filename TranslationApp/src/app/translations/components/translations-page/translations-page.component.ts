@@ -1,8 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { TranslationsSandboxService } from '../../_sandbox/translations-sandbox.service';
-import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
+import { Observable, BehaviorSubject, combineLatest, Subject } from 'rxjs';
 import { TranslationsViewModel } from '../../models/translationsViewModel';
-import { debounceTime, distinctUntilChanged, map, filter } from 'rxjs/operators';
+import { debounceTime, distinctUntilChanged, map, filter, startWith } from 'rxjs/operators';
 import { ValueChange } from '../../models/valueCange';
 
 @Component({
@@ -15,7 +15,7 @@ export class TranslationsPageComponent implements OnInit {
   translations: Observable<Array<TranslationsViewModel>>;
   languages: Observable<Array<string>>;
 
-  private searchTerm = new BehaviorSubject('');
+  private searchTerm = new Subject<string>();
 
   constructor(private sandbox: TranslationsSandboxService) { }
 
@@ -24,6 +24,7 @@ export class TranslationsPageComponent implements OnInit {
     const unfilteredTranslations = this.sandbox.getTranslationsViewModel();
     const debounced = this.searchTerm.pipe(
       debounceTime(100),
+      startWith(''),
       distinctUntilChanged()
     );
     const combined = combineLatest(unfilteredTranslations, debounced);

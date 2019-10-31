@@ -1,7 +1,8 @@
+<button class="nav-item nav-link-edit" [routerLink]="['/edit']">--&gt; Start editing</button >
+  <br/>
 <app-loading-view
   [NLDisabled]="nlDisabled | async"
   [ENDisabled]="enDisabled | async"
   [FRDisabled]="frDisabled | async"
   (load)="translationsLoaded($event)">
 </app-loading-view>
-<button class="nav-item nav-link-edit" [routerLink]="['/edit']">--&gt; Start editing</button >

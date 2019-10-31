@@ -63,9 +63,9 @@ function updateTranslation(values: any, name: string, value: string) {
   for (const property in values) {
     if (values.hasOwnProperty(property)) {
       if (property === name) {
-        value[property] = value;
-      } else if (typeof value[property] !== 'string') {
-        updateTranslation(value[property], name, value);
+        values[property] = value;
+      } else if (typeof values[property] !== 'string') {
+        updateTranslation(values[property], name, value);
       }
     }
   }

@@ -26,7 +26,7 @@ export class TranslationEditViewComponent implements OnInit, OnDestroy {
     this.valueControl = new FormControl(this.value);
     this.valueControl.valueChanges.pipe(
       takeUntil(this.destory),
-      debounceTime(100)
+      debounceTime(1000)
     ).subscribe(v => this.valueChanged.emit(new ValueChange({name: this.name, language: this.language, value: v})));
   }
 
