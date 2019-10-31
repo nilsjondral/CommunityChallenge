@@ -5,6 +5,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 import { TranslationsModule } from './translations/translations.module';
 import { StoreModule } from '@ngrx/store';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { StoreModule } from '@ngrx/store';
     BrowserModule,
     AppRoutingModule,
     TranslationsModule,
+    RouterModule,
     StoreModule.forRoot({})
   ],
   providers: [],

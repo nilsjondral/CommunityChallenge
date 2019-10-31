@@ -63,7 +63,7 @@ function updateTranslation(values: any, name: string, value: string) {
     if (values.hasOwnProperty(property)) {
       if (property === name) {
         value[property] = value;
-      } else if (value[property] instanceof Array) {
+      } else if (typeof value[property] !== 'string') {
         updateTranslation(value[property], name, value);
       }
     }

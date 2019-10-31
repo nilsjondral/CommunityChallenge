@@ -28,7 +28,7 @@ export class TranslationMapperService {
   }
 
   private mapTranslation(name: string, value: any, language: string, viewModel: Array<TranslationsViewModel>) {
-    if (value instanceof Array) {
+    if (typeof value !== 'string') {
       for (const property in value) {
         if (value.hasOwnProperty(property)) {
           this.mapTranslation(property, value[property], language, viewModel);
