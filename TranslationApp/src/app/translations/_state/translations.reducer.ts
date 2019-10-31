@@ -1,6 +1,5 @@
 import { TranslationsAction, TranslationsActionTypes, UpdateTranslation } from './translations.actions';
 import { Translations } from '../models/translations';
-import { Translation } from '../models/translation';
 
 export const TRANSLATIONS_FEATURE_KEY = 'translationsFeature';
 
@@ -59,12 +58,14 @@ function updateTranslations(state: Array<Translations>, action: UpdateTranslatio
   }
 }
 
-function updateTranslation(values: Array<Translation>, name: string, value: string) {
-  values.forEach(v => {
-    if (v.name === name) {
-      v.value = value;
-    } else if (v.value instanceof Array) {
-      updateTranslation(v.value, name, value);
+function updateTranslation(values: any, name: string, value: string) {
+  for (const property in values) {
+    if (values.hasOwnProperty(property)) {
+      if (property === name) {
+        value[property] = value;
+      } else if (value[property] instanceof Array) {
+        updateTranslation(value[property], name, value);
+      }
     }
-  });
+  }
 }

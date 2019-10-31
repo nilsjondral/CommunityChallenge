@@ -2,7 +2,6 @@ import { Injectable } from '@angular/core';
 import { Translations } from '../models/translations';
 import { TranslationsViewModel } from '../models/translationsViewModel';
 import { TranslationViewModel } from '../models/translationViewModel';
-import { Translation } from '../models/translation';
 
 @Injectable({
   providedIn: 'root'
@@ -21,16 +20,22 @@ export class TranslationMapperService {
 
   private mapTranslations(translations: Translations, viewModel: Array<TranslationsViewModel>) {
     if (! translations.values) { return; }
-    translations.values.forEach(t => {
-      this.mapTranslation(t, translations.language, viewModel);
-    });
+    for (const property in translations.values) {
+      if (translations.values.hasOwnProperty(property)) {
+        this.mapTranslation(property, translations.values[property], translations.language, viewModel);
+      }
+    }
   }
 
-  private mapTranslation(translation: Translation, language: string, viewModel: Array<TranslationsViewModel>) {
-    if (translation.value instanceof Array) {
-      translation.value.forEach(t => this.mapTranslation(t, language, viewModel));
+  private mapTranslation(name: string, value: any, language: string, viewModel: Array<TranslationsViewModel>) {
+    if (value instanceof Array) {
+      for (const property in value) {
+        if (value.hasOwnProperty(property)) {
+          this.mapTranslation(property, value[property], language, viewModel);
+        }
+      }
     } else {
-      this.createOrUpdateViewModel(translation.name, translation.value, language, viewModel);
+      this.createOrUpdateViewModel(name, value, language, viewModel);
     }
   }
 
