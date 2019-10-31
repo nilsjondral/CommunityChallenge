@@ -15,7 +15,6 @@ export class LoadingPageComponent implements OnInit {
     // testing purposes
     this.sandbox.loadTranslation(new Translations({language: 'nl', values: JSON.parse(this.nl)}));
     this.sandbox.loadTranslation(new Translations({language: 'en', values: JSON.parse(this.en)}));
-    this.sandbox.getTranslationsViewModel().subscribe(t => console.log(t));
   }
 
   // tslint:disable: member-ordering

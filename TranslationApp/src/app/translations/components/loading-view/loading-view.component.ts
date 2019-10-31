@@ -11,5 +11,4 @@ export class LoadingViewComponent implements OnInit {
 
   ngOnInit() {
   }
-
 }
