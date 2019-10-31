@@ -12,7 +12,6 @@ import { LoadingViewComponent } from './components/loading-view/loading-view.com
 import { ExportViewComponent } from './components/export-view/export-view.component';
 import { TranslationsViewComponent } from './components/translations-view/translations-view.component';
 import { RouterModule } from '@angular/router';
-import { TranslationRowComponent } from './components/translation-row/translation-row.component';
 import { TranslationsSearchComponent } from './components/translations-search/translations-search.component';
 import { ExportTranslationViewComponent } from './components/export-translation-view/export-translation-view.component';
 
@@ -24,7 +23,6 @@ import { ExportTranslationViewComponent } from './components/export-translation-
     LoadingViewComponent,
     ExportViewComponent,
     TranslationsViewComponent,
-    TranslationRowComponent,
     TranslationsSearchComponent,
     ExportTranslationViewComponent
   ],

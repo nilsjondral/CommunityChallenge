@@ -1,3 +1,14 @@
-<div>
-  <app-translation-row *ngFor="let translation of translations" [translation]="translation"></app-translation-row>
-</div>
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th *ngFor="let language of languages">{{language}}</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr *ngFor="let translation of translations">
+      <td>{{translation.name}}</td>
+      <td *ngFor="let language of languages">{{getValue(translation, language)}}</td>
+    </tr>
+  </tbody>
+</table>
