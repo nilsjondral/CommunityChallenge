@@ -5,7 +5,7 @@ import { TranslationsService } from '../services/translations.service';
 import { Observable } from 'rxjs';
 import { translationsQuery } from '../_state/translations.selectors';
 import { Translations } from '../models/translations';
-import { TranslationsLoaded } from '../_state/translations.actions';
+import { LoadTranslations, ClearTranslations, UpdateTranslation } from '../_state/translations.actions';
 import { switchMap, map } from 'rxjs/operators';
 
 @Injectable({
@@ -22,17 +22,27 @@ export class TranslationsSandboxService {
     return this.store.pipe(select(translationsQuery.getLoaded));
   }
 
-  selectTranslations(): Observable<Translations> {
-    return this.store.pipe(select(translationsQuery.getTranslations));
+  selectAllTranslations(): Observable<Array<Translations>> {
+    return this.store.pipe(select(translationsQuery.getAllTranslations));
   }
 
-  loadTranslations(language: string): Observable<Translations> {
-    const get = this.service.getTranslations(language);
+  selectTranslations(language: string): Observable<Translations> {
+    return this.store.pipe(select(translationsQuery.getTranslations, { language }));
+  }
 
-    const saveToState = get.pipe(map((t: Translations) =>
-      this.store.dispatch(new TranslationsLoaded(t))
-    ));
+  selectLanguages(): Observable<Array<string>> {
+    return this.store.pipe(select(translationsQuery.getLanguages));
+  }
 
-    return saveToState.pipe(switchMap(() => this.selectTranslations()));
+  clearTranslations(): void {
+    this.store.dispatch(new ClearTranslations());
+  }
+
+  updateTranslation(language: string, name: string, value: string): void {
+    this.store.dispatch(new UpdateTranslation({language, name, value}));
+  }
+
+  loadTranslation(translations: Translations) {
+    this.store.dispatch(new LoadTranslations(translations));
   }
 }

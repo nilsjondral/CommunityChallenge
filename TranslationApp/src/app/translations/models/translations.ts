@@ -6,6 +6,11 @@ export class Translations {
   values: Array<Translation> = [];
 
   constructor(init?: Partial<Translations>) {
-    Object.assign(this, init);
+    if (init) {
+      this.language = init.language;
+      if (init.values) {
+        this.values = init.values.map(v => new Translation(v)); // immutable
+      }
+    }
   }
 }
