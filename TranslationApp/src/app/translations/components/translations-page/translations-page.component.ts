@@ -20,20 +20,25 @@ export class TranslationsPageComponent implements OnInit {
   constructor(private sandbox: TranslationsSandboxService) { }
 
   ngOnInit() {
-    // Intermediate streams
+    // 1. Source streams
     const unfilteredTranslations = this.sandbox.getTranslationsViewModel();
-    const debounced = this.searchTerm.pipe(
+    const languagesInput = this.sandbox.selectLanguages();
+    const searchSource = this.searchTerm.asObservable();
+
+    // 2. Intermediate streams
+    const debouncedSearchTerm = searchSource.pipe(
       debounceTime(100),
       startWith(''),
       distinctUntilChanged()
     );
-    const combined = combineLatest(unfilteredTranslations, debounced);
-
-    // Output streams
-    this.translations = combined.pipe(
+    const combined = combineLatest(unfilteredTranslations, debouncedSearchTerm);
+    const filteredTranslations = combined.pipe(
       map(([u, s]) => u.filter(t => s.length < 2 || t.name.indexOf(s) >= 0))
     );
-    this.languages = this.sandbox.selectLanguages();
+
+    // 3. Output streams
+    this.translations = filteredTranslations;
+    this.languages =  languagesInput;
   }
 
   search(term: string) {
