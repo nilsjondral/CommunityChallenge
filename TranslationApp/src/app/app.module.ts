@@ -6,6 +6,7 @@ import { AppComponent } from './app.component';
 import { TranslationsModule } from './translations/translations.module';
 import { StoreModule } from '@ngrx/store';
 import { RouterModule } from '@angular/router';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -14,6 +15,7 @@ import { RouterModule } from '@angular/router';
   imports: [
     BrowserModule,
     AppRoutingModule,
+    ReactiveFormsModule,
     TranslationsModule,
     RouterModule,
     StoreModule.forRoot({})

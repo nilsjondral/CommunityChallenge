@@ -1,5 +1,6 @@
 import { NgModule } from '@angular/core';
 import { CommonModule } from '@angular/common';
+import { ReactiveFormsModule } from '@angular/forms';
 import { StoreModule } from '@ngrx/store';
 import { TRANSLATIONS_FEATURE_KEY, translationsReducer, translationsInitialState } from './_state/translations.reducer';
 import { TranslationMapperService } from './services/translation-mapper.service';
@@ -30,6 +31,7 @@ import { ExportTranslationViewComponent } from './components/export-translation-
   imports: [
     CommonModule,
     RouterModule,
+    ReactiveFormsModule,
     StoreModule.forFeature(
       TRANSLATIONS_FEATURE_KEY,
       translationsReducer,
