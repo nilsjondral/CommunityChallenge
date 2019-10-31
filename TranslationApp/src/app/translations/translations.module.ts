@@ -14,6 +14,7 @@ import { TranslationsViewComponent } from './components/translations-view/transl
 import { RouterModule } from '@angular/router';
 import { TranslationsSearchComponent } from './components/translations-search/translations-search.component';
 import { ExportTranslationViewComponent } from './components/export-translation-view/export-translation-view.component';
+import { TranslationEditViewComponent } from './components/translation-edit-view/translation-edit-view.component';
 
 @NgModule({
   declarations: [
@@ -24,7 +25,8 @@ import { ExportTranslationViewComponent } from './components/export-translation-
     ExportViewComponent,
     TranslationsViewComponent,
     TranslationsSearchComponent,
-    ExportTranslationViewComponent
+    ExportTranslationViewComponent,
+    TranslationEditViewComponent
   ],
   imports: [
     CommonModule,

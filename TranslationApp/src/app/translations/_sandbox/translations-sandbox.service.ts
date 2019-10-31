@@ -8,6 +8,7 @@ import { LoadTranslations, ClearTranslations, UpdateTranslation } from '../_stat
 import { TranslationMapperService } from '../services/translation-mapper.service';
 import { TranslationsViewModel } from '../models/translationsViewModel';
 import { map } from 'rxjs/operators';
+import { ValueChange } from '../models/valueCange';
 
 @Injectable({
   providedIn: 'root'
@@ -39,8 +40,8 @@ export class TranslationsSandboxService {
     this.store.dispatch(new ClearTranslations());
   }
 
-  updateTranslation(language: string, name: string, value: string): void {
-    this.store.dispatch(new UpdateTranslation({language, name, value}));
+  updateTranslation(change: ValueChange): void {
+    this.store.dispatch(new UpdateTranslation(change));
   }
 
   loadTranslation(translations: Translations) {

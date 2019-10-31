@@ -8,7 +8,14 @@
   <tbody>
     <tr *ngFor="let translation of translations">
       <td>{{translation.name}}</td>
-      <td *ngFor="let language of languages">{{getValue(translation, language)}}</td>
+      <td *ngFor="let language of languages">
+        <app-translation-edit-view 
+          [value]="getValue(translation, language)"
+          [name]="translation.name"
+          [language]="language"
+          (valueChanged)="change($event)">
+        </app-translation-edit-view>
+      </td>
     </tr>
   </tbody>
 </table>

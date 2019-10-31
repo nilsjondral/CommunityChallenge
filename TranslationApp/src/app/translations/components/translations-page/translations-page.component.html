@@ -2,4 +2,8 @@
 <button class="nav-item nav-link-edit" [routerLink]="['/export']">--&gt; export</button >
 <br/>
 <app-translations-search (search)="search($event)"></app-translations-search>
-<app-translations-view [translations]="translations | async" [languages]="languages | async"></app-translations-view>
+<app-translations-view 
+  [translations]="translations | async"
+  [languages]="languages | async"
+  (valueChanged)="change($event)">
+</app-translations-view>

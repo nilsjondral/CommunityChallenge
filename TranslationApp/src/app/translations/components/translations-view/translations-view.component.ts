@@ -1,6 +1,7 @@
-import { Component, OnInit, Input } from '@angular/core';
+import { Component, OnInit, Input, Output, EventEmitter } from '@angular/core';
 import { TranslationsViewModel } from '../../models/translationsViewModel';
 import { TranslationViewModel } from '../../models/translationViewModel';
+import { ValueChange } from '../../models/valueCange';
 
 @Component({
   selector: 'app-translations-view',
@@ -11,6 +12,7 @@ export class TranslationsViewComponent implements OnInit {
 
   @Input() translations: Array<TranslationsViewModel>;
   @Input() languages: Array<string>;
+  @Output() valueChanged: EventEmitter<ValueChange> = new EventEmitter();
 
   constructor() { }
 
@@ -22,6 +24,10 @@ export class TranslationsViewComponent implements OnInit {
     if (value) {
       return value.value;
     }
-    return '';
+    return null;
+  }
+
+  change(change: ValueChange) {
+    this.valueChanged.emit(change);
   }
 }

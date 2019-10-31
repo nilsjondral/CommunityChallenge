@@ -3,6 +3,7 @@ import { TranslationsSandboxService } from '../../_sandbox/translations-sandbox.
 import { Observable, BehaviorSubject, combineLatest } from 'rxjs';
 import { TranslationsViewModel } from '../../models/translationsViewModel';
 import { debounceTime, distinctUntilChanged, map, filter } from 'rxjs/operators';
+import { ValueChange } from '../../models/valueCange';
 
 @Component({
   selector: 'app-translations-page',
@@ -36,5 +37,9 @@ export class TranslationsPageComponent implements OnInit {
 
   search(term: string) {
     this.searchTerm.next(term);
+  }
+
+  change(change: ValueChange) {
+    this.sandbox.updateTranslation(change);
   }
 }

@@ -1,5 +1,6 @@
 import { Action } from '@ngrx/store';
 import { Translations } from '../models/translations';
+import { ValueChange } from '../models/valueCange';
 
 export enum TranslationsActionTypes {
   Loaded = '[Translations] translation loaded',
@@ -18,7 +19,7 @@ export class ClearTranslations implements Action {
 
 export class UpdateTranslation implements Action {
   readonly type = TranslationsActionTypes.UpdateTranslation;
-  constructor(public payload: {language: string, name: string, value: string}) {}
+  constructor(public payload: ValueChange) {}
 }
 
 export type TranslationsAction = LoadTranslations
