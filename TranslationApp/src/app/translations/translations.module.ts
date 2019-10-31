@@ -12,6 +12,8 @@ import { ExportViewComponent } from './components/export-view/export-view.compon
 import { TranslationsViewComponent } from './components/translations-view/translations-view.component';
 import { RouterModule } from '@angular/router';
 import { TranslationRowComponent } from './components/translation-row/translation-row.component';
+import { TranslationsSearchComponent } from './components/translations-search/translations-search.component';
+import { ExportTranslationViewComponent } from './components/export-translation-view/export-translation-view.component';
 
 @NgModule({
   declarations: [
@@ -21,7 +23,9 @@ import { TranslationRowComponent } from './components/translation-row/translatio
     LoadingViewComponent,
     ExportViewComponent,
     TranslationsViewComponent,
-    TranslationRowComponent
+    TranslationRowComponent,
+    TranslationsSearchComponent,
+    ExportTranslationViewComponent
   ],
   imports: [
     CommonModule,

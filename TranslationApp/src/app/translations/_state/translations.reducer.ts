@@ -25,7 +25,8 @@ export function translationsReducer(
     case TranslationsActionTypes.Loaded: {
       state = {
         ...state,
-        loaded: true
+        loaded: true,
+        translations: state.translations.map(t => new Translations(t)) // deep copy
       };
       state.translations[state.translations.length] = new Translations(action.payload);
       break;

@@ -1,4 +1,7 @@
 import { Component, OnInit } from '@angular/core';
+import { TranslationsSandboxService } from '../../_sandbox/translations-sandbox.service';
+import { Observable } from 'rxjs';
+import { Translations } from '../../models/translations';
 
 @Component({
   selector: 'app-export-page',
@@ -7,9 +10,11 @@ import { Component, OnInit } from '@angular/core';
 })
 export class ExportPageComponent implements OnInit {
 
-  constructor() { }
+  translations: Observable<Array<Translations>>;
+
+  constructor(private sandbox: TranslationsSandboxService) {}
 
   ngOnInit() {
+    this.translations = this.sandbox.selectAllTranslations();
   }
-
 }

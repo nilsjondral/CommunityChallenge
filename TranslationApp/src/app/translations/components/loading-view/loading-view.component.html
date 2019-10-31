@@ -1,1 +1,3 @@
-<button class="nav-item nav-link-edit" [routerLink]="['/edit']">Start editing</button >
+<button class="nav-item nav-link-edit" (click)="loadNL()" [disabled]="NLDisabled">Load NL</button >
+<button class="nav-item nav-link-edit" (click)="loadEN()" [disabled]="ENDisabled">Load EN</button >
+<button class="nav-item nav-link-edit" (click)="loadFR()" [disabled]="FRDisabled">Load FR</button >
