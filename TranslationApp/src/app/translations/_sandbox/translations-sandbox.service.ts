@@ -1,12 +1,13 @@
 import { Injectable } from '@angular/core';
 import { TranslationsState } from '../_state/translations.reducer';
 import { Store, select } from '@ngrx/store';
-import { TranslationsService } from '../services/translations.service';
 import { Observable } from 'rxjs';
 import { translationsQuery } from '../_state/translations.selectors';
 import { Translations } from '../models/translations';
 import { LoadTranslations, ClearTranslations, UpdateTranslation } from '../_state/translations.actions';
-import { switchMap, map } from 'rxjs/operators';
+import { TranslationMapperService } from '../services/translation-mapper.service';
+import { TranslationsViewModel } from '../models/translationsViewModel';
+import { map } from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
@@ -15,7 +16,7 @@ export class TranslationsSandboxService {
 
   constructor(
     private store: Store<TranslationsState>,
-    private service: TranslationsService
+    private mapper: TranslationMapperService
   ) { }
 
   selectLoaded(): Observable<boolean> {
@@ -27,7 +28,7 @@ export class TranslationsSandboxService {
   }
 
   selectTranslations(language: string): Observable<Translations> {
-    return this.store.pipe(select(translationsQuery.getTranslations, { language }));
+    return this.store.pipe(select(translationsQuery.getTranslations, {language}));
   }
 
   selectLanguages(): Observable<Array<string>> {
@@ -44,5 +45,9 @@ export class TranslationsSandboxService {
 
   loadTranslation(translations: Translations) {
     this.store.dispatch(new LoadTranslations(translations));
+  }
+
+  getTranslationsViewModel(): Observable<Array<TranslationsViewModel>> {
+    return this.selectAllTranslations().pipe(map(t => this.mapper.map(t)));
   }
 }
